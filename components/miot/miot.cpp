@@ -61,7 +61,7 @@ void Miot::setup() {
     });
 
 #ifdef USE_OTA
-  ota::global_ota_component->add_on_state_callback([this](ota::OTAState state, float progress, uint8_t error) {
+  ota::get_global_ota_callback()->add_on_state_callback([this](ota::OTAState state, float progress, uint8_t error, ota::OTAComponent * pOtaComp) {
     switch (state) {
     case ota::OTA_STARTED:
       // directly send this to indicate a firmware update, as loop() won't get called anymore
